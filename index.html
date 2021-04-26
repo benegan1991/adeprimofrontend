@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adeprimo Front End Task</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-3 mb-2">Adeprimo Front End Task</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <ul class="key">
+                    <li>
+                        <i class="fa fa-car" style="color: #03e803;"></i>
+                        <small>Available</small>
+                    </li>
+                    <li>
+                        <i class="fa fa-car" style="color: #ff3030;"></i>
+                        <small>Not Available</small>
+                    </li>
+                    <li>
+                        <i class="fa fa-bolt"></i>
+                        <small>Charging Station</small>
+                    </li>
+                    <li>
+                        <i class="fa fa-wheelchair"></i>
+                        <small>Disabled Parking</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="parking-app" style="display: none;">
+        <ul class="nav nav-tabs mb-4" id="floorlist" role="tablist">
+            <li v-for="(result, index) in results.floors" class="nav-item" role="presentation">
+                <a :class="(index === 0 ? 'active nav-link' : 'nav-link')" data-toggle="tab" :href="'#'+textkey[result.floor]" role="tab" :aria-controls="textkey[result.floor]" aria-selected="true">Floor {{ result.floor }}</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="floorContent">
+            <div v-for="(result, index) in results.floors" :id="textkey[result.floor]" :class="(index === 0 ? 'tab-pane fade show active' : 'tab-pane fade')" role="tabpanel">
+                <h3 class="mb-3">Floor {{ result.floor }}</h3>
+                <div class="row row-cols-2 row-cols-md-5">
+                    <div v-for="(spot, index) in result.parking_spots" class="col mb-4">
+                        <div class="card parking-spot h-100">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Parking Spot {{ spot.number }}</h5>
+                                <div :class="(spot.is_available === false ? 'vehicle-icon not-available' : 'vehicle-icon')">
+                                    <i :class="(spot.type === 'car' ? 'fa fa-car' : 'fa fa-motorcycle')"></i>
+                                </div>
+                                <div v-if="spot.is_charging_station" class="d-inline-block">
+                                    <i class="fa fa-bolt"></i>
+                                </div>
+                                <div v-if="spot.is_disabled_parking" class="d-inline-block">
+                                    <i class="fa fa-wheelchair"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

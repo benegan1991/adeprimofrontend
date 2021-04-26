@@ -1,0 +1,33 @@
+.key {
+  max-width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  background: rgba(0,0,0,0.1);
+  padding: 8px 10px;
+  margin: 0 auto 30px auto;
+  border-radius: 5px;
+  color: #777;
+}
+.key li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+.key li small {
+  margin-left: 5px;
+}
+.parking-spot {
+  background-color: #fafafa;
+}
+.parking-spot h5 {
+  font-size: 16px;
+}
+.vehicle-icon {
+  color: #03e803;
+  font-size: 40px;
+}
+.vehicle-icon.not-available {
+  color: #ff3030;
+}
